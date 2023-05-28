@@ -1,0 +1,15 @@
+.chats-page {
+    width: 1326px;
+    margin: auto;
+    margin-top: 90px;
+}
+.chat-page__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.chats-page__add {
+    width: 150px;
+    margin-bottom: 20px;
+}

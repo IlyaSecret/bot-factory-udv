@@ -10,11 +10,17 @@
     text-align: center;
     align-items: center;
     padding-left: 15px;
+    cursor: pointer;
     img {
         width: 50px;
         height: 50px;
         border-radius: 30px;
+        visibility: hidden;
     }
+}
+.employee-item:hover {
+    background: rgba(3, 2, 3, 0.92);
+    transition: 0.3s all;
 }
 .employee-item__name {
     vertical-align: middle;

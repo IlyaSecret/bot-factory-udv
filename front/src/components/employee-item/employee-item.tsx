@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IEmployee } from '../../types/IEmployee';
 import './employee-item.scss';
 
@@ -7,11 +8,13 @@ type EmployeeItemProps = {
 
 export default function EmployeeItem({employee} : EmployeeItemProps) {
     return (
-        <div className="employee-item">
-            <img src={employee.img} alt={employee.name} className='employee-item_avatar'></img>
-            <p className='employee-item__name'>{employee.name}</p>
-            <p className='employee-item__tg'>{ employee.telegramLink }</p>
-            <p className='employee-item__role'>{ employee.role }</p>
-        </div>
+        <Link to={`/employees/${employee.id}`}>
+            <div className="employee-item">
+                <img className='employee-item_avatar' alt="alt"></img>
+                <p className='employee-item__name'>{employee.full_name}</p>
+                <p className='employee-item__tg'>@{ employee.tg_username }</p>
+                <p className='employee-item__role'>******</p>
+            </div>
+        </Link>
     )
 }

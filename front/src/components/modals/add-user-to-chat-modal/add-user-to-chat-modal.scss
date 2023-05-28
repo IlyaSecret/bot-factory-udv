@@ -1,0 +1,40 @@
+.chat-item-add {
+    width: 400px;
+    height: 50px;
+    display: flex;
+    grid-gap: 15px;
+}
+.chat-item-add__info {
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 3px;
+    label {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+    }
+    span {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #8A8A8A;
+    }
+}
+
+.add-to-chat {
+    h1 {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #FFFFFF;
+        padding-bottom: 40px;
+    }
+}

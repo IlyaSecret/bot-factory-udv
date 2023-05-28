@@ -1,0 +1,29 @@
+.add-chat__input {
+    background: inherit;
+    border: none;
+    border-bottom: 1px solid white;
+    color: #fff;
+    transition: 0.3s all;
+    width: 269px;
+    height: 25px;
+}
+.add-chat__input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #626061;
+}
+.add-chat__title {
+    display: block;
+    color: #fff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+.add-chat-modal__buttons {
+    margin-top: 30px;
+    display: flex;
+    grid-gap: 30px;
+    justify-content: flex-end;
+}
