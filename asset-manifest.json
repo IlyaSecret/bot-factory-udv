@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bot-factory-udv/static/css/main.eb857da1.css",
+    "main.js": "/bot-factory-udv/static/js/main.f855ec26.js",
+    "static/js/787.44627bfd.chunk.js": "/bot-factory-udv/static/js/787.44627bfd.chunk.js",
+    "index.html": "/bot-factory-udv/index.html",
+    "main.eb857da1.css.map": "/bot-factory-udv/static/css/main.eb857da1.css.map",
+    "main.f855ec26.js.map": "/bot-factory-udv/static/js/main.f855ec26.js.map",
+    "787.44627bfd.chunk.js.map": "/bot-factory-udv/static/js/787.44627bfd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb857da1.css",
+    "static/js/main.f855ec26.js"
+  ]
+}
