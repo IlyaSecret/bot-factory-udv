@@ -31,11 +31,9 @@ export default function EmployeesPage() {
     const addUser = (): void => {
         const userData = {
             tg_username: username,
-            first_name: fullName.firstname,
-            last_name: fullName.lastname,
+            first_name: fullName.lastname,
+            last_name: fullName.firstname,
             patronymic: fullName.surname,
-            chats: [1],
-            tags: [1]
         }
         dispatch(addEmployee(userData))
         dispatch(getAllEmployeesAction())
@@ -51,7 +49,7 @@ export default function EmployeesPage() {
     return (
         <div className="employess-page">
             <div className='employees-page__add'>
-                <RegularButton onClick={() => setModalActive(true)}>Добавить сотрудника</RegularButton>
+                <RegularButton handleClick={() => setModalActive(true)}>Добавить сотрудника</RegularButton>
             </div>
             
             <div className='employees-page__items'>
@@ -59,8 +57,8 @@ export default function EmployeesPage() {
             </div>
             <Modal active={isModalActive} setActive={handleCloseModal}  step={step}>
                 <AddEmployeeModal nextStep={setStep} change={setFullName}></AddEmployeeModal>
-                <AddEmployeeModal_Tg nextStep={setStep} change={setUsername}></AddEmployeeModal_Tg>
-                <AddEmployeeModal_Tag nextStep={setStep} change={setTag} addUser={addUser}></AddEmployeeModal_Tag>
+                <AddEmployeeModal_Tg nextStep={setStep} change={setUsername} addUser={addUser} setActive={setModalActive}></AddEmployeeModal_Tg>
+                {/* <AddEmployeeModal_Tag nextStep={setStep} change={setTag} addUser={addUser}></AddEmployeeModal_Tag> */}
             </Modal>
         </div>
     )

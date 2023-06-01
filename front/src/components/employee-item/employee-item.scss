@@ -11,6 +11,7 @@
     align-items: center;
     padding-left: 15px;
     cursor: pointer;
+    z-index: -1;
     img {
         width: 50px;
         height: 50px;
@@ -24,4 +25,22 @@
 }
 .employee-item__name {
     vertical-align: middle;
+}
+.additional-button {
+    position: absolute;
+    color: #fff;
+    font-size: 40px;
+    z-index: 100;
+    top: 4px;
+    right: 15px;
+    padding: 0 10px;
+    align-self: center;
+    text-align: center;
+}
+.employee-item-link {
+    position: relative;
+}
+
+.additional-hidden {
+    display: none;
 }

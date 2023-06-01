@@ -24,6 +24,6 @@ export interface IPostEmployee {
     first_name: string,
     last_name: string,
     patronymic: string,
-    chats: Array<number>,
-    tags: Array<number>
+    chats?: Array<number>,
+    tags?: Array<number>
 }

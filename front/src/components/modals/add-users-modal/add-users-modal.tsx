@@ -13,16 +13,23 @@ type Props = {
 
 export default function AddUsersModal({handleUserSelection, selectedUsers, addUsers, setActive}: Props) {
     const users = useAppSelector(state => state.employees.users);
+    const currentChatUsers = useAppSelector(state => state.chats.currentChatUsers);
+    const filteredUsers = users.filter((el) => {
+        const userId = el.id;
+        return !currentChatUsers?.some((user) => user.id === userId);
+      });
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getAllEmployeesAction())
     }, [])
 
+
+
     return (
         <div className="add-users">
             <h1>Добавить участников</h1>
             <div className="users">
-                {users.map(el => 
+                {filteredUsers.map(el => 
                     <div key={el.id} className="user-item">
                         <input
                             type="checkbox"
@@ -34,8 +41,8 @@ export default function AddUsersModal({handleUserSelection, selectedUsers, addUs
                 )}
             </div>
             <div className='add-chat-modal__buttons'>
-                <RegularButton type='only-text' onClick={() => setActive(false)}>Отмена</RegularButton>
-                <RegularButton type='only-text' onClick={() => addUsers()}>Добавить</RegularButton>
+                <RegularButton type='only-text' handleClick={() => setActive(false)}>Отмена</RegularButton>
+                <RegularButton type='only-text' handleClick={() => addUsers()}>Добавить</RegularButton>
             </div>
         </div>
     );

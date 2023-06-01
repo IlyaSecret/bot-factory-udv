@@ -13,24 +13,26 @@ type Props = {
 }
 
 export default function AddUserToChatModal({selectedChats, handleChatSelection, addToChat, setActive}: Props) {
-
+    const currentUser = useAppSelector(state => state.employees.currentEmployee)
     const chats = useAppSelector(state => state.chats.chats);
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getAllChatsAction())
     }, [])
-    
+
+    const chatsToDisplay = chats?.filter(el => !currentUser?.chats.includes(el.id));
 
     return (
         <div className='add-to-chat'>
             <h1>Список чатов</h1>
             <div className='add-to-chat__item'>
-                {chats?.map(el => 
+                {chatsToDisplay?.map(el => 
                     <div key={el.id} className="chat-item-add">
                         <input
                             type="radio"
-                            checked={selectedChats == el.id}
+                            checked={selectedChats === el.id}
                             onChange={() => handleChatSelection(el.id)}
+                            className='radio'
                         />
                         <div className='chat-item-add__info'>
                             <label>{el.name}</label>
@@ -40,10 +42,9 @@ export default function AddUserToChatModal({selectedChats, handleChatSelection, 
                 )}
             </div>
             <div className='add-chat-modal__buttons'>
-                <RegularButton type='only-text' onClick={() => setActive(false)}>Отмена</RegularButton>
-                <RegularButton type='only-text' onClick={() => addToChat()}>Добавить</RegularButton>
+                <RegularButton type='only-text' handleClick={() => setActive(false)}>Отмена</RegularButton>
+                <RegularButton type='only-text' handleClick={() => addToChat()}>Добавить</RegularButton>
             </div>
         </div>
     )
-    
 }

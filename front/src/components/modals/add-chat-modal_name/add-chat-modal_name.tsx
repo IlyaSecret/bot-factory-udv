@@ -16,7 +16,7 @@ export default function AddChatModal_Name({ change, addChat }: Props) {
             <input className="add-chat__input" onChange={(event) => onChangeName(event)}></input>
             <div className='add-chat-modal__buttons'>
                 <RegularButton type='only-text'>Отмена</RegularButton>
-                <RegularButton type='only-text' onClick={() => addChat()}>Создать</RegularButton>
+                <RegularButton type='only-text' handleClick={() => addChat()}>Создать</RegularButton>
             </div>
         </div>
     )

@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IEmployee, ISingleEmployee } from "../../types/IEmployee";
-import { getAllEmployeesAction, getEmployeeById } from "../api-actions";
+import { getAllEmployeesAction, getEmployeeById, getUserChatsAction } from "../api-actions";
+import { IChat } from "../../types/IChat";
 
 type InitialState = {
     users: IEmployee[],
     currentEmployee: ISingleEmployee | null,
-    isLoading: boolean
+    isLoading: boolean,
+    currentEmployeeChats: IChat[]
 }
 
 const initialState: InitialState = {
     users: [],
     currentEmployee: null,
-    isLoading: false
+    isLoading: false,
+    currentEmployeeChats: []
 }
 
 export const employeesSlice = createSlice({
@@ -29,6 +32,13 @@ export const employeesSlice = createSlice({
             })
             .addCase(getEmployeeById.fulfilled, (state, action) => {
                 state.currentEmployee = action.payload;
+            })
+            .addCase(getUserChatsAction.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(getUserChatsAction.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.currentEmployeeChats = action.payload;
             })
     } 
 })

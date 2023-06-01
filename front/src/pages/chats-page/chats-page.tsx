@@ -27,7 +27,7 @@ export default function ChatsPage() {
     return (
         <div className="chats-page">
             <div className="chats-page__add">
-             <RegularButton onClick={() => setActive(true)}>Добавить чат</RegularButton>
+             <RegularButton handleClick={() => setActive(true)}>Добавить чат</RegularButton>
             </div>
             <div className="chat-page__list">
                 {chats.map(chat => <ChatItem chat={chat} key={chat.name}/>)}

@@ -74,11 +74,11 @@ export const addChatAction = createAsyncThunk<void, string, {
         await api.post("chat/create/", {
             title: title
         });
-        await dispatch(getAllChatsAction());
+        await dispatch(getAllChatsAction())
     }
 )
 
-export const getChatByIdAction = createAsyncThunk<IChat, number, {
+export const getChatByIdAction = createAsyncThunk<IChat | null, number, {
     dispatch: AppDispatch,
     state: RootState,
     extra: AxiosInstance
@@ -90,7 +90,7 @@ export const getChatByIdAction = createAsyncThunk<IChat, number, {
     }
 )
 
-export const addUsersToChat = createAsyncThunk<void, {users: Array<number>, chatId: number | null}, {
+export const addUsersToChat = createAsyncThunk<void, {users: Array<number>, chatId: number}, {
     dispatch: AppDispatch,
     state: RootState,
     extra: AxiosInstance
@@ -100,6 +100,7 @@ export const addUsersToChat = createAsyncThunk<void, {users: Array<number>, chat
         await api.post(`/chat/add/${data.chatId}`, {
             users: data.users
         })
+        await dispatch(getChatByIdAction(data.chatId))
     }
 )
 
@@ -112,5 +113,39 @@ export const getChatUsersAction = createAsyncThunk<IEmployee[], number, {
     async (id, { dispatch, extra: api }) => {
         const { data } = await api.get(`chat/users/${id}`)
         return data
+    }
+)
+
+export const getUserChatsAction = createAsyncThunk<IChat[], number[], {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+  }>(
+    "chats/fetchChatsForUser",
+    async (userIds, { dispatch, extra: api }) => {
+      const result: IChat[] = [];
+  
+      for (const userId of userIds) {
+        const chat = await dispatch(getChatByIdAction(userId)).unwrap();
+        if (chat) {
+          result.push(chat);
+        }
+      }
+  
+      return result;
+    }
+);
+  
+export const deleteUserFromChatAction = createAsyncThunk<void, {chatId: number, userId: number}, {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+}>(
+    "chats/deleteUserFromChat",
+    async (data, { dispatch, extra: api }) => {
+        await api.post(`chat/remove/${data.chatId}`, {
+            users: [data.userId]
+        })
+        await dispatch(getChatUsersAction(data.chatId))
     }
 )

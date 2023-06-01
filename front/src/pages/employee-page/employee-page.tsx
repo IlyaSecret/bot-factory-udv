@@ -1,12 +1,14 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import './employee-page.scss';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { addUsersToChat, deleteEmployee,  getEmployeeById } from '../../store/api-actions';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { addUsersToChat, deleteEmployee,  getEmployeeById, getUserChatsAction } from '../../store/api-actions';
 import TextField from '../../components/text-field/text-field';
 import RegularButton from '../../components/buttons/regular-button/regular-button';
 import { Modal } from '../../components/modal/modal';
 import AddUserToChatModal from '../../components/modals/add-user-to-chat-modal/add-user-to-chat-modal';
+import Loader from '../../components/loader/loader';
+import ChatItem from '../../components/chat-item/chat-item';
 
 export default function EmployeePage() {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -14,12 +16,20 @@ export default function EmployeePage() {
     const id = Number(useParams().id)
     const dispatch = useAppDispatch();
     const currentUser = useAppSelector(state => state.employees.currentEmployee);
+    const isLoading = useAppSelector(state => state.employees.isLoading);
+    const userChats = useAppSelector(state => state.employees.currentEmployeeChats);
     const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getEmployeeById(id))
     }, [])
-
+    
+    useEffect(() => {
+        if (currentUser) {
+            dispatch(getUserChatsAction(currentUser?.chats))
+        }
+    }, [currentUser, dispatch])
+    
 
     const handleDelete = (): void => {
         dispatch(deleteEmployee(id))
@@ -27,16 +37,25 @@ export default function EmployeePage() {
     }
 
     const handleChatSelection = (chatId: number): void => {
-        
             setSelectedChats(chatId);
     };
 
     const addEmmployeeToChat = (): void => {
-        const data = {
-            chatId: selectedChats,
-            users: [id]
+        if (selectedChats) {
+            const data = {
+                chatId: selectedChats,
+                users: [id]
+            }
+            dispatch(addUsersToChat(data))
+            if (currentUser) {
+                dispatch(getUserChatsAction(currentUser?.chats))
+            }
         }
-        dispatch(addUsersToChat(data))
+        setIsActive(false);
+    }
+
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
@@ -50,17 +69,23 @@ export default function EmployeePage() {
                     </div>
                     <div className='employee-page__links'>
                         <TextField title='Telegram'>{ currentUser?.tg_username }</TextField>
-                        <TextField title='Теги'>{ currentUser?.tags[0]}</TextField>
+                        {/* <TextField title='Теги'>{ currentUser?.tags[0]}</TextField> */}
                     </div>
                 </div>
                 <div className='employee-page__chats'>
                     <span>Чаты</span>
                     <div className='employee-page__chat-items'>
-                        {/* {ChatsMock.map((chat) => <ChatItem chat={chat} key={chat.name}></ChatItem>)} */}
+                        {userChats.map((chat) => 
+                            <Link to={`/chats/${chat.id}`}>
+                                <div className='user-chat'>
+                                    <span>{ chat.name }</span>
+                                </div>
+                            </Link>
+                        )}
                     </div>
                 </div>
                 <div className='employee-page__buttons'>
-                    <RegularButton onClick={() => setIsActive(true)}>Добавить в чат</RegularButton>
+                    <RegularButton handleClick={() => setIsActive(true)}>Добавить в чат</RegularButton>
                     <RegularButton type='transparent'>Зарегистрировать</RegularButton>
                     <button className='delete-button' onClick={handleDelete}>Уволить сотрудника</button>
                 </div>

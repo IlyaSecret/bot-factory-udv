@@ -57,7 +57,7 @@ export default function AddEmployeeModal({ nextStep, change }: Props) {
             </div>
             <div className='add-employee-modal__buttons'>
                 <RegularButton type='only-text'>Отмена</RegularButton>
-                <RegularButton type='only-text' onClick={() => nextStep(prev => prev + 1)}>Далее</RegularButton>
+                <RegularButton type='only-text' handleClick={() => nextStep(prev => prev + 1)}>Далее</RegularButton>
             </div>
         </div>
     )

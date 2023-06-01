@@ -31,11 +31,19 @@ export const chatsSlice = createSlice({
             .addCase(getAllChatsAction.fulfilled, (state, action) => {
                 state.chats = action.payload;
             })
+            .addCase(getChatByIdAction.pending, (state, action) => {
+                state.isLoading = true;
+            })
             .addCase(getChatByIdAction.fulfilled, (state, action) => {
                 state.currentChat = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getChatUsersAction.pending, (state, action) => {
+                state.isLoading = true;
             })
             .addCase(getChatUsersAction.fulfilled, (state, action) => {
-                state.currentChatUsers = action.payload
+                state.currentChatUsers = action.payload;
+                state.isLoading = false;
             })
     }
 })

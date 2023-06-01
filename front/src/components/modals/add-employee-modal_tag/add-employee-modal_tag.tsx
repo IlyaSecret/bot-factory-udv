@@ -30,8 +30,8 @@ export default function AddEmployeeModal_Tag({ nextStep, addUser }: Props) {
                 </div>
             </div>
             <div className='add-employee-modal__buttons'>
-                <RegularButton type='only-text' onClick={handlePrevClick}>Назад</RegularButton>
-                <RegularButton type='only-text' onClick={handleNextClick}>Далее</RegularButton>
+                <RegularButton type='only-text' handleClick={handlePrevClick}>Назад</RegularButton>
+                <RegularButton type='only-text' handleClick={handleNextClick}>Далее</RegularButton>
             </div>
         </div>
     )

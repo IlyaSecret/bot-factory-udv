@@ -4,13 +4,19 @@ import './add-employee-modal_tg.scss'
 
 type Props = {
     nextStep: React.Dispatch<React.SetStateAction<number>>,
-    change: React.Dispatch<React.SetStateAction<string>>
+    change: React.Dispatch<React.SetStateAction<string>>,
+    addUser: () => void,
+    setActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function AddEmployeeModal_Tg({ nextStep, change }: Props) {
+export default function AddEmployeeModal_Tg({ nextStep, change, addUser, setActive }: Props) {
     
     const onChangeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         change(event.target.value)
+    } 
+    const handleNextClick = (): void => {
+        addUser()
+        setActive(false);
     } 
 
     return (
@@ -29,8 +35,8 @@ export default function AddEmployeeModal_Tg({ nextStep, change }: Props) {
                 </div>
             </div>
             <div className='add-employee-modal__buttons'>
-                <RegularButton type='only-text' onClick={() => nextStep(prev => prev - 1)}>Назад</RegularButton>
-                <RegularButton type='only-text' onClick={() => nextStep(prev => prev + 1)}>Далее</RegularButton>
+                <RegularButton type='only-text' handleClick={() => nextStep(prev => prev - 1)}>Назад</RegularButton>
+                <RegularButton type='only-text' handleClick={() => handleNextClick()}>Далее</RegularButton>
             </div>
         </div>
     )
