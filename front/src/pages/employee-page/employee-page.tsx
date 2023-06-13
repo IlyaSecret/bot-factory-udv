@@ -8,10 +8,10 @@ import RegularButton from '../../components/buttons/regular-button/regular-butto
 import { Modal } from '../../components/modal/modal';
 import AddUserToChatModal from '../../components/modals/add-user-to-chat-modal/add-user-to-chat-modal';
 import Loader from '../../components/loader/loader';
-import ChatItem from '../../components/chat-item/chat-item';
 
 export default function EmployeePage() {
     const [isActive, setIsActive] = useState<boolean>(false);
+    const [isActiveSecond, setIsActiveSecond] = useState<boolean>(false);
     const [selectedChats, setSelectedChats] = useState<number | null>(null);
     const id = Number(useParams().id)
     const dispatch = useAppDispatch();
@@ -40,18 +40,18 @@ export default function EmployeePage() {
             setSelectedChats(chatId);
     };
 
-    const addEmmployeeToChat = (): void => {
+    const addEmmployeeToChat = async () => {
         if (selectedChats) {
             const data = {
                 chatId: selectedChats,
                 users: [id]
             }
-            dispatch(addUsersToChat(data))
+            setIsActive(false);
+            await dispatch(addUsersToChat(data))
             if (currentUser) {
                 dispatch(getUserChatsAction(currentUser?.chats))
             }
         }
-        setIsActive(false);
     }
 
     if (isLoading) {
@@ -87,7 +87,7 @@ export default function EmployeePage() {
                 <div className='employee-page__buttons'>
                     <RegularButton handleClick={() => setIsActive(true)}>Добавить в чат</RegularButton>
                     <RegularButton type='transparent'>Зарегистрировать</RegularButton>
-                    <button className='delete-button' onClick={handleDelete}>Уволить сотрудника</button>
+                    <button className='delete-button' onClick={() => setIsActiveSecond(true)}>Уволить сотрудника</button>
                 </div>
             </div>
             <Modal active={isActive} setActive={setIsActive}>
@@ -97,6 +97,16 @@ export default function EmployeePage() {
                     addToChat={addEmmployeeToChat}
                     setActive={setIsActive}
                 ></AddUserToChatModal>
+            </Modal>
+            <Modal active={isActiveSecond} setActive={setIsActiveSecond}>
+                <div className='delete-employee'>
+                    <h3>Вы уверенны, что хотите уволить { currentUser?.last_name + " " + currentUser?.first_name}?</h3>
+                    <div className='delete-employee__buttons'>
+                        <RegularButton type='only-text' handleClick={() => setIsActiveSecond(false)}>Отмена</RegularButton>
+                        <RegularButton type='only-text' handleClick={handleDelete}>Подвердить</RegularButton>
+                    </div>
+                    
+                </div>
             </Modal>
         </div>
     )

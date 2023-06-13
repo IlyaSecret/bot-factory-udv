@@ -13,15 +13,20 @@ export default function ChatsPage() {
     const [chatName, setChatName] = useState<string>("")
     const dispatch = useAppDispatch();
     const chats = useAppSelector(state => state.chats.chats)
-    const addChat = (): void => {
-        dispatch(addChatAction(chatName));
+    const isLoading = useAppSelector(state => state.chats.isLoading);
+    const addChat = async () => {
         setActive(false);
+        await dispatch(addChatAction(chatName));
+        dispatch(getAllChatsAction());
     }
     useEffect(() => {
         dispatch(getAllChatsAction())
     }, [dispatch])
 
-    if (!chats) {
+    // if (!chats) {
+    //     return <Loader></Loader>
+    // }
+    if (isLoading) {
         return <Loader></Loader>
     }
     return (
@@ -30,10 +35,10 @@ export default function ChatsPage() {
              <RegularButton handleClick={() => setActive(true)}>Добавить чат</RegularButton>
             </div>
             <div className="chat-page__list">
-                {chats.map(chat => <ChatItem chat={chat} key={chat.name}/>)}
+                {chats?.map(chat => <ChatItem chat={chat} key={chat.id}/>)}
             </div>
             <Modal active={isActive} setActive={setActive}>
-                <AddChatModal_Name change={setChatName} addChat={addChat}></AddChatModal_Name>
+                <AddChatModal_Name change={setChatName} addChat={addChat} closeModal={setActive}></AddChatModal_Name>
             </Modal>
         </div>
     )

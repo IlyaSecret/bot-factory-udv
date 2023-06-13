@@ -22,7 +22,11 @@
     flex-direction: column;
     grid-gap: 20px;
 }
-.chat-page__add-user {
+.chat-page__add-user, .chat-page__delete-chat {
     width: 220px;
     margin-bottom: 20px;
+}
+.chat-page__buttons {
+    display: flex;
+    grid-gap: 40px;
 }

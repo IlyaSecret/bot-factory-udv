@@ -79,3 +79,18 @@
         color: #FFFFFF;
     }
 }
+
+.delete-employee {
+    width: 300px;
+    text-align: center;
+    color: #fff;
+    h3 {
+        padding-bottom: 40px;
+        font-weight: bold;
+    }
+}
+.delete-employee__buttons {
+    display: flex;
+    justify-content: flex-end;
+    grid-gap: 20px;
+}

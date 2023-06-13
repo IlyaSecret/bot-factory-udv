@@ -11,7 +11,11 @@
     font-size: 16px;
     line-height: 19px;
     color: #FFFFFF;
+    transition: 0.2s;
     cursor: pointer;
+    &:hover {
+        background-color: rgba(3, 2, 3, 0.92);
+    }
 }
 .transparent-button {
     text-align: center;
@@ -26,7 +30,12 @@
     line-height: 19px;
     color: #D7D7D7;
     border: 1px solid #D7D7D7;
+    transition: 0.2s;
     cursor: pointer;
+    &:hover {
+        background-color: #fff;
+        color: #000;
+    }
 }
 .only-text {
     font-size: 16px;

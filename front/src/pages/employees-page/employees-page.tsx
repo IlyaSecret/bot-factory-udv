@@ -56,7 +56,7 @@ export default function EmployeesPage() {
                 {employees.map((empl: IEmployee) => <EmployeeItem employee={empl} key={empl.id} />)}
             </div>
             <Modal active={isModalActive} setActive={handleCloseModal}  step={step}>
-                <AddEmployeeModal nextStep={setStep} change={setFullName}></AddEmployeeModal>
+                <AddEmployeeModal nextStep={setStep} change={setFullName} closeModal={setModalActive}></AddEmployeeModal>
                 <AddEmployeeModal_Tg nextStep={setStep} change={setUsername} addUser={addUser} setActive={setModalActive}></AddEmployeeModal_Tg>
                 {/* <AddEmployeeModal_Tag nextStep={setStep} change={setTag} addUser={addUser}></AddEmployeeModal_Tag> */}
             </Modal>

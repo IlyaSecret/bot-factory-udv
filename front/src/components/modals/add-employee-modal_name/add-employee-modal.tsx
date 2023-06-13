@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react';
 import RegularButton from '../../buttons/regular-button/regular-button'
 import './add-employee-modal.scss'
 
@@ -7,11 +8,12 @@ type Props = {
         firstname: string;
         lastname: string;
         surname: string;
-    }>>
+    }>>;
+    closeModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
 
-export default function AddEmployeeModal({ nextStep, change }: Props) {
+export default function AddEmployeeModal({ nextStep, change, closeModal }: Props) {
     const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         change(prev => ({...prev, firstname: e.target.value}))
     }
@@ -56,7 +58,7 @@ export default function AddEmployeeModal({ nextStep, change }: Props) {
                 </div>
             </div>
             <div className='add-employee-modal__buttons'>
-                <RegularButton type='only-text'>Отмена</RegularButton>
+                <RegularButton type='only-text' handleClick={() => closeModal(false)}>Отмена</RegularButton>
                 <RegularButton type='only-text' handleClick={() => nextStep(prev => prev + 1)}>Далее</RegularButton>
             </div>
         </div>

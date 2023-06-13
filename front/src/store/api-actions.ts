@@ -3,6 +3,7 @@ import { IEmployee, IPostEmployee, ISingleEmployee } from "../types/IEmployee";
 import { AppDispatch, RootState } from "./store";
 import { AxiosInstance } from "axios";
 import { IChat } from "../types/IChat";
+import { ITag } from "../types/ITag";
 
 
 export const getAllEmployeesAction = createAsyncThunk<IEmployee[], undefined, {
@@ -12,7 +13,7 @@ export const getAllEmployeesAction = createAsyncThunk<IEmployee[], undefined, {
 }>(
     "users/getAllEmployees",
     async (_arg, { extra: api }) => {
-        const { data } = await api.get<IEmployee[]>('/employees')
+        const { data } = await api.get<IEmployee[]>('/employees/')
         return data;
     }
 )
@@ -74,7 +75,6 @@ export const addChatAction = createAsyncThunk<void, string, {
         await api.post("chat/create/", {
             title: title
         });
-        await dispatch(getAllChatsAction())
     }
 )
 
@@ -100,7 +100,6 @@ export const addUsersToChat = createAsyncThunk<void, {users: Array<number>, chat
         await api.post(`/chat/add/${data.chatId}`, {
             users: data.users
         })
-        await dispatch(getChatByIdAction(data.chatId))
     }
 )
 
@@ -147,5 +146,28 @@ export const deleteUserFromChatAction = createAsyncThunk<void, {chatId: number, 
             users: [data.userId]
         })
         await dispatch(getChatUsersAction(data.chatId))
+    }
+)
+
+export const deleteChatAction = createAsyncThunk< void, number, {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+}>(
+    "chats/deleteChat",
+    async (id, { dispatch, extra: api }) => {
+        await api.delete(`chats/${id}/`)
+    }
+)
+
+export const getAllTagsAction = createAsyncThunk < ITag[], undefined, {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+}>(
+    "tags/getAllTags",
+    async (_arg, { dispatch, extra: api }) => {
+        const { data } = await api.get("tags/")
+        return data;
     }
 )
