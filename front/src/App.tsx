@@ -6,6 +6,7 @@ import EmployeesPage from './pages/employees-page/employees-page';
 import ChatsPage from './pages/chats-page/chats-page';
 import EmployeePage from './pages/employee-page/employee-page';
 import ChatPage from './pages/chat-page/chat-page';
+import TagsPage from './pages/tags-page/tags-page';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/employees/:id' element={<EmployeePage />}></Route>
           <Route path='/chats' element={<ChatsPage />}></Route>
           <Route path='/chats/:id' element={<ChatPage></ChatPage>}></Route>
+          <Route path='/tags' element={<TagsPage></TagsPage>}></Route>
         </Routes>
       </div>
     </BrowserRouter>

@@ -171,3 +171,26 @@ export const getAllTagsAction = createAsyncThunk < ITag[], undefined, {
         return data;
     }
 )
+
+export const addTagToEmployee = createAsyncThunk < void, undefined, {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+}>(
+    "tags/getAllTags",
+    async (_arg, { dispatch, extra: api }) => {
+        const { data } = await api.get("tags/")
+        return data;
+    }
+)
+
+export const deleteTagAction = createAsyncThunk < void, number, {
+    dispatch: AppDispatch,
+    state: RootState,
+    extra: AxiosInstance
+}>(
+    "tags/getAllTags",
+    async (id, { dispatch, extra: api }) => {
+        await api.delete(`tags/${id}/`)
+    }
+)

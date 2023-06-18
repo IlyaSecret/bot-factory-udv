@@ -5,15 +5,18 @@ import { useState } from 'react';
 import RegularButton from '../buttons/regular-button/regular-button';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { deleteUserFromChatAction } from '../../store/api-actions';
+import Tag from '../tag/tag';
 
 type EmployeeItemProps = {
   employee: IEmployee;
   withAdditional?: boolean;
+  withTags?: boolean;
 };
 
 export default function EmployeeItem({
   employee,
   withAdditional,
+  withTags
 }: EmployeeItemProps) {
     const [isHovered, setIsHovered] = useState(false);
     const dispatch = useAppDispatch();
@@ -48,7 +51,7 @@ export default function EmployeeItem({
         <img className="employee-item_avatar" alt="alt" />
         <p className="employee-item__name">{employee.full_name}</p>
         <p className="employee-item__tg">@{employee.tg_username}</p>
-        <p className="employee-item__role">******</p>
+        <p className="employee-item__role">{withTags ? employee.tags.map(tag => <Tag tag={tag} key={tag.id} editable={false}></Tag>).slice(0, 3) : null }</p>
       </div>
       {withAdditional ? (
               <div className="additional-info"

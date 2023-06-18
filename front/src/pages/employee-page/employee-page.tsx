@@ -8,6 +8,8 @@ import RegularButton from '../../components/buttons/regular-button/regular-butto
 import { Modal } from '../../components/modal/modal';
 import AddUserToChatModal from '../../components/modals/add-user-to-chat-modal/add-user-to-chat-modal';
 import Loader from '../../components/loader/loader';
+import Tag from '../../components/tag/tag';
+import { ITag } from '../../types/ITag';
 
 export default function EmployeePage() {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -63,13 +65,19 @@ export default function EmployeePage() {
             <div className='employee-page__wrap'>
                 <div className='employee-page__info'>
                     <div className='employee-page__fullname'>
-                        <TextField title='Фамилия'>{currentUser?.first_name}</TextField>
-                        <TextField title='Имя'>{ currentUser?.last_name }</TextField>
+                        <TextField title='Фамилия'>{currentUser?.last_name}</TextField>
+                        <TextField title='Имя'>{ currentUser?.first_name }</TextField>
                         <TextField title='Отчество'>{currentUser?.patronymic}</TextField>
                     </div>
                     <div className='employee-page__links'>
                         <TextField title='Telegram'>{ currentUser?.tg_username }</TextField>
-                        {/* <TextField title='Теги'>{ currentUser?.tags[0]}</TextField> */}
+                        <div className='employee-page__tags'>
+                            <TextField title='Теги'>Поиск тегов</TextField>
+                            <div className='employee-page__tags-list'>
+                                {currentUser?.tags.map(tag => <Tag tag={tag} key={tag.id} editable={true}></Tag>)}
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
                 <div className='employee-page__chats'>

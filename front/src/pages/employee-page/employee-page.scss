@@ -94,3 +94,12 @@
     justify-content: flex-end;
     grid-gap: 20px;
 }
+
+.employee-page__tags-list {
+    width: 422px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    padding-top: 10px;
+}

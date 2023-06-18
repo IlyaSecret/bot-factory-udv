@@ -28,14 +28,14 @@ export default function EmployeesPage() {
         setModalActive(false);
         setStep(0);
     }
-    const addUser = (): void => {
+    const addUser = async () => {
         const userData = {
             tg_username: username,
             first_name: fullName.lastname,
             last_name: fullName.firstname,
             patronymic: fullName.surname,
         }
-        dispatch(addEmployee(userData))
+        await dispatch(addEmployee(userData))
         dispatch(getAllEmployeesAction())
     }
     useEffect(() => {
@@ -53,7 +53,7 @@ export default function EmployeesPage() {
             </div>
             
             <div className='employees-page__items'>
-                {employees.map((empl: IEmployee) => <EmployeeItem employee={empl} key={empl.id} />)}
+                {employees.map((empl: IEmployee) => <EmployeeItem employee={empl} key={empl.id} withTags={true} />)}
             </div>
             <Modal active={isModalActive} setActive={handleCloseModal}  step={step}>
                 <AddEmployeeModal nextStep={setStep} change={setFullName} closeModal={setModalActive}></AddEmployeeModal>

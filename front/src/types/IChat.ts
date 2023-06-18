@@ -5,4 +5,5 @@ export interface IChat {
     owner: string;
     censor: boolean;
     tg_link: string;
+    number_emp: number;
 }

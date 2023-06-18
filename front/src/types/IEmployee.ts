@@ -16,7 +16,7 @@ export interface ISingleEmployee {
     last_name: string,
     patronymic: string,
     chats: Array<number>,
-    tags: Array<number>
+    tags: Array<ITag>
 }
 
 export interface IPostEmployee {

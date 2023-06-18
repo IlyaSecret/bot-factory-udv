@@ -2,9 +2,20 @@
     padding: 5px 10px;
     background: rgba(23, 22, 23, 0.5);
     gap: 5px;
-    border: 1px solid #000000;
     border-radius: 4px;
     margin-right: 10px;
+    color: #fff;
+    display: inline-block;
+}
+.editable {
+    border: 1px solid #000000;
+}
+.non-editable {
+    border: 1px solid #fff;
+    text-align: center;
+    .tag__delete {
+        display: none;
+    }
 }
 .tag__delete {
     background: none;
@@ -12,7 +23,7 @@
     padding-left: 5px;
     width: 20px;
     height: 20px;
-
+    cursor: pointer;
 }
 .delete-image {
     vertical-align: sub;

@@ -10,7 +10,7 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .modal-window.active {
@@ -24,7 +24,7 @@
     min-width: 200px;
     border-radius: 12px;
     transform: scale(0.5);
-    transition: 0.4s all;
+    transition: 0.2s all;
 }
 .modal-window__content.active {
     transform: scale(1);
