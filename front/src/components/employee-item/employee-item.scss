@@ -1,0 +1,46 @@
+.employee-item {
+    box-sizing: border-box;
+    background: rgba(23, 22, 23, 0.92);
+    width: 100%;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 5% 20% 10% 65%;
+    margin-bottom: 10px;
+    color: white;
+    text-align: center;
+    align-items: center;
+    padding-left: 15px;
+    cursor: pointer;
+    z-index: -1;
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 30px;
+        visibility: hidden;
+    }
+}
+.employee-item:hover {
+    background: rgba(3, 2, 3, 0.92);
+    transition: 0.3s all;
+}
+.employee-item__name {
+    vertical-align: middle;
+}
+.additional-button {
+    position: absolute;
+    color: #fff;
+    font-size: 40px;
+    z-index: 100;
+    top: 4px;
+    right: 15px;
+    padding: 0 10px;
+    align-self: center;
+    text-align: center;
+}
+.employee-item-link {
+    position: relative;
+}
+
+.additional-hidden {
+    display: none;
+}

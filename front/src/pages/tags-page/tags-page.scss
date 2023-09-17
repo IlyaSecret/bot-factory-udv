@@ -1,0 +1,12 @@
+.tags-page {
+    margin: auto;
+    width: 1326px;
+    padding-top: 90px;
+}
+.tags-page__items {
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}

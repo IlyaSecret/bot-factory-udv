@@ -1,0 +1,37 @@
+.add-employee-modal {
+    color: #fff;
+    width: 417px;
+}
+.add-employee-modal__inputs {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+}
+.add-employee-modal__title {
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+    font-size: 20px;
+}
+.add-employee-modal__input {
+    font-size: 16px;
+    padding: 13px 10px;
+    border: none;
+    background: rgba(23, 22, 23, 0.92);
+    border-radius: 4px;
+    width: 100%;
+    color: #fff;
+}
+.add-employee-modal__type {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #B7B5B5;
+    display: block;
+    padding-bottom: 5px;
+}
+.add-employee-modal__buttons {
+    display: flex;
+    grid-gap: 30px;
+    justify-content: flex-end;
+}

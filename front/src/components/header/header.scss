@@ -1,0 +1,46 @@
+.header {
+    background-color: #302E2F;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.big-header {
+    height: 290px;
+    transition: 0.3s all;
+}
+.small-header {
+    height: 124px;
+    transition: 0.3s all;
+}
+
+.header-content {
+    max-width: 1326px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.header__input {
+    input {
+        border: 1px solid #D7D7D7;
+        font-size: 13px;
+        width: 648px;
+        padding: 12px;
+        border-radius: 12px;
+        z-index: 2;
+        padding-left: 40px;
+        outline: none;
+    }
+    img {
+        z-index: 1;
+        position: relative;
+        left: -635px;
+        top: 5px;
+    }
+
+}
+
+.header__logo {
+    cursor: pointer;
+}
